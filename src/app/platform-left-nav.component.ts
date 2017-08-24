@@ -11,7 +11,7 @@ export class PlatformLeftNav{
   constructor(private company: CompanyComponent){};
 
 setLeftNavOption():void{
-  //let option:string = 'Company Dashboard'
-  //this.company.setLeftNavOption(option);
+  let option:string = 'Company Dashboard'
+  this.company.setLeftNavOption(option);
 }
 }
