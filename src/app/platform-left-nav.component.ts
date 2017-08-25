@@ -3,15 +3,18 @@ import {CompanyComponent} from './company.component';
 
 @Component({
   selector:'platform-left-nav',
-  template:'<div>test</div>',
+  template:`
+  <div (click)="setLeftNavOption('test1')">test</div>
+  <div (click)="setLeftNavOption('test2')">test2</div>
+
+  `,
   providers: [CompanyComponent]
 })
 
 export class PlatformLeftNav{
   constructor(private company: CompanyComponent){};
 
-setLeftNavOption():void{
-  let option:string = 'Company Dashboard'
-  this.company.setLeftNavOption(option);
-}
+  setLeftNavOption(option:string):void{    
+    this.company.setLeftNavOption(option);
+  }
 }
