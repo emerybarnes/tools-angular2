@@ -1,20 +1,45 @@
-import {Component} from '@angular/core';
-import {CompanyComponent} from './company.component';
+import {Component, Input, OnChanges, SimpleChange, Output, EventEmitter} from '@angular/core';
+import {AppService} from './app.service';
 
 @Component({
   selector:'platform-left-nav',
-  template:`
-  <div (click)="setLeftNavOption('test1')">test</div>
-  <div (click)="setLeftNavOption('test2')">test2</div>
-
-  `,
-  providers: [CompanyComponent]
+  templateUrl:'./platform-left-nav.components.html',
+  styleUrls: ['./platform-left-nav.components.css'],
+  providers: [AppService]
 })
 
 export class PlatformLeftNav{
-  constructor(private company: CompanyComponent){};
+  constructor(private _appService: AppService, ){}
 
-  setLeftNavOption(option:string):void{    
-    this.company.setLeftNavOption(option);
+  leftNavOptions: string[];
+  companyOptions: string[] = ['Company Dashboard', 'Businesses', 'Errors', 'Role Management', 'Release Notes', 'Feedback',];
+  nexusOptions: string[] = ['n1', 'n2'];
+
+  @Input() selectedApp: string;
+
+  @Output() onLeftNavOptionChange = new EventEmitter<string>();
+
+
+  leftNavOptionChanged(option: string){
+    this.onLeftNavOptionChange.emit(option);
+  }
+  ngOnChanges(changes : SimpleChange)
+  {
+    for(let a in changes)
+    {
+        let app = changes[a].currentValue;
+
+        switch(app){
+          case "Platform":
+            this.leftNavOptions = this.companyOptions;
+            break;
+          case "Nexus":
+            this.leftNavOptions = this.nexusOptions;
+            break;
+          case "":
+            this.leftNavOptions = [];
+            break;
+        }
+    }
   }
 }

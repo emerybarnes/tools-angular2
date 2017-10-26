@@ -1,7 +1,7 @@
 <div style="display:flex;">
   <div style="width:225px; height:100vh; background:linear-gradient(179deg, #029f52, #036240)">
     <img id=companyLogo [src]='sanitizer.bypassSecurityTrustResourceUrl(buxtonImg)' (click)="setView('')"/>
-    <platform-left-nav *ngIf="selectedView==='Platform'" ></platform-left-nav>
+    <platform-left-nav [selectedApp]="selectedView" (onLeftNavOptionChange)="onLeftNavOptionChange($event)"></platform-left-nav>
   </div>
   <div style="width:calc(100vw - 226px)">
     <div class="tools-top-nav">
@@ -15,8 +15,8 @@
             <div class="tools-app-tile-name" >{{app.name}}</div>
           </div>
         </div>
-        <company *ngIf="selectedView==='Platform'"></company>
-        <nexus *ngIf="selectedView==='Nexus'"></nexus>
+        <company [selectedView]="selectedView" [selectedLeftNav]="selectedLeftNav" *ngIf="selectedView==='Platform'"></company>
+        <nexus [selectedView]="selectedView" [selectedLeftNav]="selectedLeftNav" *ngIf="selectedView==='Nexus'"></nexus>
         <!-- <ops-dashboard *ngIf="selectedView==='Ops Dashboard'"></ops-dashboard>
         <finance *ngIf="selectedView==='Finance'"></finance>
         <marketing *ngIf="selectedView==='Marketing'"></marketing>

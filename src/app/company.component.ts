@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import { ChangeDetectorRef } from '@angular/core';
+import {AppService} from './app.service';
 
 @Component({
   selector: 'company',
@@ -10,12 +11,12 @@ import { ChangeDetectorRef } from '@angular/core';
 
 export class CompanyComponent {
   constructor( public sanitizer: DomSanitizer, public change:ChangeDetectorRef){}
-  leftNavOption:string = 'Nothing yet';
+  @Input() selectedView:string = "";
+  @Input() selectedLeftNav:string = "";
 
-  setLeftNavOption(option:string):void{
-    console.log(option)
-    this.leftNavOption = option;
+onchange(change: SimpleChange){
+  
 
-    this.change.detectChanges();
-  }
+}
+
 }

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-
+import { APPS } from './apps'
+import {CompanyComponent} from './company.component';
+import {NexusComponent} from './nexus.component';
+import {PlatformLeftNav} from './platform-left-nav.component'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,16 +15,16 @@ export class AppComponent {
   userName: string ='ebarnes';
   buxtonImg: string = 'assets/buxton-logo.svg';
   selectedView:string = '';
+  selectedLeftNav:string = "";
 
-  apps = [{name: 'Platform', image: './assets/platform-icon.svg'},
-          {name: 'Nexus', image: './assets/nexus-icon.svg'},
-          {name: 'Ops Dashboard', image: './assets/ops-icon.svg'},
-          {name: 'Finance', image: './assets/finance-icon.png'},
-          {name: 'Marketing', image: './assets/marketing-icon.svg'},
-          {name: 'World View', image: './assets/worldview-icon.svg'}
-        ];
+  apps = APPS;
 
   setView(appName:string):void{
     this.selectedView = appName;
+  }
+
+  onLeftNavOptionChange(option: string){
+    this.selectedLeftNav = option;
+    console.log(option);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -10,6 +10,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class NexusComponent {
   constructor( public sanitizer: DomSanitizer){}
 
+  @Input() selectedView: string = "";
+  @Input() selectedLeftNav:string = "";
   userName: string ='ebarnes';
 
   buxtonImg: string = 'assets/buxton-logo.svg';
